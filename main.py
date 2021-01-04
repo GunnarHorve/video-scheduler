@@ -33,6 +33,7 @@ def fetch_cl_args():
         return chromecasts
 
     def assemble_cl_parser(chromecasts):
+        global FRIENDLY_NAME
         parser = argparse.ArgumentParser(description='Schedule YouTube videos for headless streaming')
         parser.add_argument('-c', '--cast', required=True, help=f'Name of device to cast to. Choose one of {[cast[3] for cast in chromecasts]}')
 
@@ -44,7 +45,7 @@ def fetch_cl_args():
 
 
 def play_youtube_video(video_id):
-    log.info(f"casting {video_id} to {friendly_name}")
+    log.info(f"casting {video_id} to {FRIENDLY_NAME}")
 
     # connect to device
     chromecasts, browser = pychromecast.get_listed_chromecasts(friendly_names=[FRIENDLY_NAME])
